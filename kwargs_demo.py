@@ -74,10 +74,59 @@ print(dict2)
 def print_info(fname, lname, address, *args, **kwargs):
     # if inside kwargs key 'hide': True ==> print only first name, otherwise print all fields in one line
     # if inside kwargs key 'upper': True ==> print everything in upper case
+    hide = kwargs.get('hide', False)
+    upper = kwargs.get('upper', False)
+
+    output = f"{fname}"
+    if not hide:
+        output += f" {lname} {address}"
+    if upper:
+        output = output.upper()
+
+    print(output)
+
+print_info('danny', 'shovevani', 'narniya 12')
+print_info('danny', 'shovevani', 'narniya 12', hide=True)
+print_info('danny', 'shovevani', 'narniya 12', hide=True, upper=True)
+print_info('danny', 'shovevani', 'narniya 12', upper=True)
+
+def a1():
+    a2()
+
+# a1()  # Error
+
+def a2():
     pass
 
+a1()
+
+print('==================')
+def run_fun(func_name, *args, **kwargs):
+    func_name(*args, **kwargs)
+
+def func1(x):
+    print(x)
+
+def func2(x, y):
+    print(x + y)
+
+def func3(x, y, z):
+    print(x + y + z)
+
+def func4(dic1):
+    print(dic1['name'])
+
+def func5(x, y, *args, **kwargs):
+    print(x + y)
+    print(args)
+    print(kwargs)
 
 
+run_fun(func1, 10)
+run_fun(func2, 2, 5)
+run_fun(func3, 2, 5, 7)
+run_fun(func4, {'name': 'danny'})
+run_fun(func5, 2, 5, 4, 4, 4, upper=True)
 
 
 
